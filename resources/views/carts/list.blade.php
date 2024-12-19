@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-    <form class="bg0 p-t-130 p-b-85" method="post">
+    <form class="bg0 p-t-130 p-b-85" method="post"  action="{{ route('order.addCart') }}">
         @include('admin.alert')
 
         @if (count($products) != 0)
@@ -31,7 +31,7 @@
                                         <tr class="table_row">
                                             <td class="column-1">
                                                 <div class="how-itemcart1">
-                                                    <img src="{{ $product->thumb }}" alt="IMG">
+                                                    <img src="{{ asset($product->thumb )}}" alt="IMG">
                                                 </div>
                                             </td>
                                             <td class="column-2">{{ $product->name }}</td>
@@ -52,7 +52,7 @@
                                             </td>
                                             <td class="column-5">{{ number_format($priceEnd, 0, '', '.') }}</td>
                                             <td class="p-r-15">
-                                                <a href="/carts/delete/{{ $product->id }}">Xóa</a>
+                                                <a href="{{ route('cart.delete', $product->id) }}">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" value="Update Cart" formaction="/update-cart"
+                                <input type="submit" value="Update Cart" formaction="{{asset('/update-cart')}}"
                                     class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
                                 @csrf
                             </div>
@@ -108,23 +108,23 @@
                                         </span>
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="Tên khách Hàng" required>
+                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="Tên khách Hàng" value="{{ old('name', session('name', '')) }}" required>
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="Số Điện Thoại" required>
+                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="Số Điện Thoại" value="{{ old('phone', session('phone', '')) }}" required>
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address" placeholder="Địa Chỉ Giao Hàng">
+                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address" placeholder="Địa Chỉ Giao Hàng" value="{{ old('address', session('address', '')) }}">
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="Email Liên Hệ">
+                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="Email Liên Hệ" value="{{ old('email', session('email', '')) }}">
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <textarea class="cl8 plh3 size-111 p-lr-15" name="content"></textarea>
+                                            <textarea class="cl8 plh3 size-111 p-lr-15" name="content">{{ old('content', session('content', '')) }}</textarea>
                                         </div>
 
                                     </div>

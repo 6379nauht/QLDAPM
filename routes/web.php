@@ -61,4 +61,11 @@ Route::get('san-pham/{id}-{slug}.html', [App\Http\Controllers\ProductController:
 Route::get('/san-pham/load-more', [App\Http\Controllers\ProductController::class, 'loadMore'])->name('products.loadMore');
 
 
+Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index'])->name('add-cart');
+Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);
+Route::post('/update-cart', [App\Http\Controllers\CartController::class, 'update'])->name('update-cart');
+Route::get('/carts/delete/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.delete');
+Route::post('order', [App\Http\Controllers\CartController::class, 'addCart'])->name('order.addCart');
+
+
 

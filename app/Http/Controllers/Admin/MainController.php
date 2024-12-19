@@ -23,8 +23,9 @@ class MainController extends Controller
     }
     public function index()
     {
+        $currentUser = auth()->user(); // Lấy người dùng hiện tại
         return view('admin.home', [
-           'title' => 'Trang Quản Trị Admin'
+           'title' => 'Trang Quản Trị Admin',
         ]);
     }
 
